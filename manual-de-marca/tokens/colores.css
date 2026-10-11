@@ -1,0 +1,80 @@
+/* Paleta de Zarpi: tokens de color para modo claro (:root) y oscuro (.dark).
+   Copiados de ImportacionesQ8 (proyecto/frontend/src/styles/theme.css). */
+
+:root {
+  --font-size: 16px;
+  --background: #f8f8f3;
+  --foreground: #0f0f0f;
+  --card: #ffffff;
+  --card-foreground: #0f0f0f;
+  --popover: #ffffff;
+  --popover-foreground: #0f0f0f;
+  --primary: #4f06eb;
+  --primary-foreground: #ffffff;
+  --secondary: #f0eaff;
+  --secondary-foreground: #4f06eb;
+  --muted: #f1f1eb;
+  --muted-foreground: #68686a;
+  --accent: #edf953;
+  --accent-foreground: #0f0f0f;
+  --destructive: #c92f45;
+  --destructive-foreground: #ffffff;
+  --border: #deded7;
+  --input: transparent;
+  --input-background: #ffffff;
+  --switch-background: #c9c9c2;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: #4f06eb;
+  --chart-1: #4f06eb;
+  --chart-2: #edf953;
+  --chart-3: #19a974;
+  --chart-4: #7c3aed;
+  --chart-5: #e89b2d;
+  --radius: 0.5rem;
+  --sidebar: #0f0f0f;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #edf953;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #29202f;
+  --sidebar-accent-foreground: #edf953;
+  --sidebar-border: #2f2f2f;
+  --sidebar-ring: #edf953;
+}
+
+.dark {
+  --background: #0f0f0f;
+  --foreground: #ffffff;
+  --card: #171717;
+  --card-foreground: #ffffff;
+  --popover: #171717;
+  --popover-foreground: #ffffff;
+  --primary: #4f06eb;
+  --primary-foreground: #ffffff;
+  --secondary: #29202f;
+  --secondary-foreground: #edf953;
+  --muted: #242424;
+  --muted-foreground: #b6b6b6;
+  --accent: #edf953;
+  --accent-foreground: #0f0f0f;
+  --destructive: #c92f45;
+  --destructive-foreground: #ffffff;
+  --border: #353535;
+  --input: #242424;
+  --ring: #edf953;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: #4f06eb;
+  --chart-2: #edf953;
+  --chart-3: #19a974;
+  --chart-4: #7c3aed;
+  --chart-5: #e89b2d;
+  --sidebar: #0f0f0f;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #edf953;
+  --sidebar-primary-foreground: #0f0f0f;
+  --sidebar-accent: #29202f;
+  --sidebar-accent-foreground: #edf953;
+  --sidebar-border: #353535;
+  --sidebar-ring: #edf953;
+}

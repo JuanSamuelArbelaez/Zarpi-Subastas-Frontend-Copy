@@ -1,0 +1,34 @@
+# Sirve el frontend compilado y reenvía la API, el WebSocket y las imágenes al
+# backend. Con DOMINIO=localhost Caddy usa un certificado propio; con un dominio
+# real saca uno de Let's Encrypt.
+{$DOMINIO} {
+	encode zstd gzip
+
+	# handle_path quita el prefijo /api, igual que el proxy de Vite en desarrollo.
+	handle_path /api/* {
+		reverse_proxy backend:8000
+	}
+	handle /ws {
+		reverse_proxy backend:8000
+	}
+	handle /media/* {
+		reverse_proxy backend:8000
+	}
+
+	handle {
+		root * /srv
+		try_files {path} /index.html
+		file_server
+
+		@assets path /assets/*
+		header @assets Cache-Control "public, max-age=31536000, immutable"
+		@index path / /index.html
+		header @index Cache-Control "no-cache"
+	}
+
+	header {
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+}

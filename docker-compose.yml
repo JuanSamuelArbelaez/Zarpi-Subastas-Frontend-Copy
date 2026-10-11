@@ -1,0 +1,52 @@
+# Stack completo: MySQL + API + frontend detrás de Caddy.
+#   cp .env.example .env   # y completa SECRET_KEY y las claves de MySQL
+#   docker compose up -d --build
+# Luego abre https://localhost (certificado local de Caddy).
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-zarpi_subastas}
+      MYSQL_USER: ${MYSQL_USER:-zarpi}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Define MYSQL_PASSWORD en .env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Define MYSQL_ROOT_PASSWORD en .env}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      retries: 20
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    environment:
+      APP_ENV: ${APP_ENV:-production}
+      SECRET_KEY: ${SECRET_KEY:?Define SECRET_KEY en .env}
+      DATABASE_URL: mysql+pymysql://${MYSQL_USER:-zarpi}:${MYSQL_PASSWORD}@mysql:3306/${MYSQL_DATABASE:-zarpi_subastas}?charset=utf8mb4
+      CORS_ORIGINS: https://${DOMINIO:-localhost}
+      UPLOAD_DIR: /app/media
+    volumes:
+      - media:/app/media
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    environment:
+      DOMINIO: ${DOMINIO:-localhost}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - caddy_data:/data
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+  media:
+  caddy_data:

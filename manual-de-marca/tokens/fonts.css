@@ -1,0 +1,23 @@
+@font-face {
+	font-family: "AT Avenor";
+	src: url("/brand/at-avenor.otf") format("opentype");
+	font-style: normal;
+	font-weight: 400 700;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Elvellon";
+	src: url("/brand/elvellon.otf") format("opentype");
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Elvellon";
+	src: url("/brand/elvellon-bold.otf") format("opentype");
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+}
